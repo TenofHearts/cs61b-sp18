@@ -49,6 +49,11 @@ public class IntList
 		}
 	}
 
+	private static void Lancelot()
+	{
+		System.out.println(10);
+	}
+
 	/**
 	 * Returns a list equal to L with all elements squared. Non-destructive.
 	 */
