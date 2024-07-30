@@ -2,7 +2,8 @@ package ec1;
 
 import java.util.List;
 
-public class Problem1 {
+public class Problem1
+{
 	/**
 	 * Given the list of Airports and their possible (one-way!) flights,
 	 * find the list of flights to take (in order) that gives the largest
@@ -11,7 +12,8 @@ public class Problem1 {
 	 * Runtime: O(N^2 M^2).
 	 * With N airports and M flights
 	 */
-	public List<Flight> solve() {
+	public List<Flight> solve()
+	{
 		// FIXME
 		return null;
 	}
@@ -19,13 +21,15 @@ public class Problem1 {
 	public List<Airport> airports;
 	public List<Flight> flights;
 
-	private static class Airport {
+	private static class Airport
+	{
 		public int id;
 		public List<Flight> outgoing;
 		public List<Flight> incoming;
 	}
 
-	private static class Flight {
+	private static class Flight
+	{
 		public Airport start;
 		public Airport end;
 

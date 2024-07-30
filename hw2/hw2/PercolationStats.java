@@ -1,5 +1,6 @@
-package hw2;
+package hw2.hw2;
 
-public class PercolationStats {
+public class PercolationStats
+{
 
 }

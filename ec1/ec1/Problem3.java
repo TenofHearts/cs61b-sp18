@@ -2,10 +2,13 @@ package ec1;
 
 import java.util.List;
 
-public class Problem3 {
+public class Problem3
+{
 	/**
-	 * Given the list of students and their neighbors, assign test versions to students
-	 * such that no two students sitting next to each other have the same test version.
+	 * Given the list of students and their neighbors, assign test versions to
+	 * students
+	 * such that no two students sitting next to each other have the same test
+	 * version.
 	 * Additionally, use the fewest number of distinct test versions possible.
 	 *
 	 * Assign the results to the students' 'version' field.
@@ -15,13 +18,15 @@ public class Problem3 {
 	 *
 	 * Runtime: O(N^3)
 	 */
-	public void solve() {
+	public void solve()
+	{
 		// FIXME
 	}
 
 	public List<Student> students;
 
-	public static class Student {
+	public static class Student
+	{
 		public int id;
 		public int version;
 
