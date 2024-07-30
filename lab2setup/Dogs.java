@@ -1,8 +1,8 @@
-public class Dog
+public class Dogs
 {
     private int size;
 
-    public Dog(int s)
+    public Dogs(int s)
     {
         size = s;
     }

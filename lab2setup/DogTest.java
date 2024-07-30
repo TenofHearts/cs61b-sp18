@@ -6,14 +6,14 @@ public class DogTest
     @Test
     public void testSmall()
     {
-        Dog d = new Dog(3);
+        Dogs d = new Dogs(3);
         assertEquals("yip", d.noise());
     }
 
     @Test
     public void testLarge()
     {
-        Dog d = new Dog(20);
+        Dogs d = new Dogs(20);
         assertEquals("bark", d.noise());
     }
 }
