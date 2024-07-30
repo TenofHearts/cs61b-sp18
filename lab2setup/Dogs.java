@@ -1,19 +1,21 @@
 public class Dogs
 {
-    private int size;
+	private final int size;
 
-    public Dogs(int s)
-    {
-        size = s;
-    }
+	public Dogs(int s)
+	{
+		size = s;
+	}
 
-    /** Makes a noise. */
-    public String noise()
-    {
-        if (size < 10)
-        {
-            return "yip";
-        }
-        return "bark";
-    }
+	/**
+	 * Makes a noise.
+	 */
+	public String noise()
+	{
+		if (size < 10)
+		{
+			return "yip";
+		}
+		return "bark";
+	}
 }
