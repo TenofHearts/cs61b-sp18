@@ -27,4 +27,35 @@ public class Planet
 		imgFileName = other.imgFileName;
 	}
 
+    public static double square(double x)
+    {
+        return x * x;
+    }
+
+	public double calcDistance(Planet other) 
+    {
+        return Math.sqrt(Planet.square(xxPos - other.xxPos) + Planet.square(yyPos - other.yyPos));
+    }
+
+    static final double G = 6.67e-11;
+
+    public double calcForceExertedBy(Planet other)
+    {
+        return G * mass * other.mass / Planet.square(this.calcDistance(other));
+    }
+
+    public double calcForceExertedByX(Planet other)
+    {
+        return this.calcForceExertedBy(other) * (other.xxPos - xxPos) / this.calcDistance(other);
+    }
+
+    public double calcForceExertedByY(Planet other)
+    {
+        return this.calcForceExertedBy(other) * (other.yyPos - yyPos) / this.calcDistance(other);
+    }
+
+    public double calcNetForceExertedBy(Planet[] others)
+    {
+        
+    }
 }
