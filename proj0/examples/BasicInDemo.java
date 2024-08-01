@@ -1,6 +1,10 @@
+package examples;
+
 /** Simpler demo of the In class. */
-public class BasicInDemo {
-	public static void main(String[] args) {
+public class BasicInDemo
+{
+	public static void main(String[] args)
+	{
 		In in = new In("BasicInDemo_input_file.txt");
 
 		/* Every time you call a read method from the In class,
@@ -15,8 +19,6 @@ public class BasicInDemo {
 		String fourthItemInFile = in.readString();
 		double fifthItemInFile = in.readDouble();
 
-		System.out.println("The file contained "  + firstItemInFile + ", " + 
-			               secondItemInFile + ", " + thirdItemInFile + ", " +
-			               fourthItemInFile + ", and " + fifthItemInFile);
+		System.out.println("The file contained " + firstItemInFile + ", " + secondItemInFile + ", " + thirdItemInFile + ", " + fourthItemInFile + ", and " + fifthItemInFile);
 	}
 } 
