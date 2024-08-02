@@ -1,4 +1,7 @@
-class NBody {
+public class NBody {
+    public NBody() {
+    }
+
     public static double readRadius(String path) {
         In in = new In(path);
 
@@ -6,7 +9,7 @@ class NBody {
         return in.readDouble();
     }
 
-    public static void drawBackGround() {
+    private static void drawBackGround() {
         StdDraw.picture(0, 0, "./images/starfield.jpg");
     }
 

@@ -24,7 +24,7 @@ public class Planet {
         imgFileName = other.imgFileName;
     }
 
-    public static double square(double x) {
+    private static double square(double x) {
         return x * x;
     }
 
@@ -32,7 +32,7 @@ public class Planet {
         return Math.sqrt(Planet.square(xxPos - other.xxPos) + Planet.square(yyPos - other.yyPos));
     }
 
-    static final double G = 6.67e-11;
+    private static final double G = 6.67e-11;
 
     public double calcForceExertedBy(Planet other) {
         return G * mass * other.mass / Planet.square(this.calcDistance(other));
