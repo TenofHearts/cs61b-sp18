@@ -69,11 +69,15 @@ public class LinkedListDeque<T>
 	 */
 	public T removeFirst()
 	{
-		size--;
-		T data = sentinel.next.data;
-		sentinel.next = sentinel.next.next;
-		sentinel.next.prev = sentinel;
-		return data;
+		if (size > 0)
+		{
+			size--;
+			T data = sentinel.next.data;
+			sentinel.next = sentinel.next.next;
+			sentinel.next.prev = sentinel;
+			return data;
+		}
+		return null;
 	}
 
 	/**
@@ -81,11 +85,15 @@ public class LinkedListDeque<T>
 	 */
 	public T removeLast()
 	{
-		size--;
-		T data = sentinel.prev.data;
-		sentinel.prev = sentinel.prev.prev;
-		sentinel.prev.next = sentinel;
-		return data;
+		if (size > 0)
+		{
+			size--;
+			T data = sentinel.prev.data;
+			sentinel.prev = sentinel.prev.prev;
+			sentinel.prev.next = sentinel;
+			return data;
+		}
+		return null;
 	}
 
 	/**

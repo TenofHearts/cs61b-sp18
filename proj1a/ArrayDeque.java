@@ -92,15 +92,19 @@ public class ArrayDeque<T>
 	 */
 	public T removeFirst()
 	{
-		head = (head + 1) % arr.length;
-		T item = arr[head];
-		arr[head] = null;
-		size--;
-		if (((double) size / (double) arr.length < 0.25) && arr.length > 8)
+		if (size > 0)
 		{
-			resize(arr.length / 2);
+			head = (head + 1) % arr.length;
+			T item = arr[head];
+			arr[head] = null;
+			size--;
+			if (((double) size / (double) arr.length < 0.25) && arr.length > 8)
+			{
+				resize(arr.length / 2);
+			}
+			return item;
 		}
-		return item;
+		return null;
 	}
 
 	/**
@@ -108,15 +112,19 @@ public class ArrayDeque<T>
 	 */
 	public T removeLast()
 	{
-		tail = (tail - 1 + arr.length) % arr.length;
-		T item = arr[tail];
-		arr[tail] = null;
-		size--;
-		if (((double) size / (double) arr.length < 0.25) && arr.length > 8)
+		if (size > 0)
 		{
-			resize(arr.length / 2);
+			tail = (tail - 1 + arr.length) % arr.length;
+			T item = arr[tail];
+			arr[tail] = null;
+			size--;
+			if (((double) size / (double) arr.length < 0.25) && arr.length > 8)
+			{
+				resize(arr.length / 2);
+			}
+			return item;
 		}
-		return item;
+		return null;
 	}
 
 	/**
