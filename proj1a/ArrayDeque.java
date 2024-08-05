@@ -23,7 +23,7 @@ public class ArrayDeque<T>
 		int newTail = size;
 		for (int i = 0; i < size; i++)
 		{
-			newArr[i] = arr[(head + 1 + i) % size];
+			newArr[i] = arr[(head + 1 + i) % arr.length];
 		}
 
 		arr = newArr;
@@ -96,7 +96,7 @@ public class ArrayDeque<T>
 		T item = arr[head];
 		arr[head] = null;
 		size--;
-		if ((double) size / (double) arr.length < 0.25)
+		if (((double) size / (double) arr.length < 0.25) && arr.length > 8)
 		{
 			resize(arr.length / 2);
 		}
@@ -112,7 +112,7 @@ public class ArrayDeque<T>
 		T item = arr[tail];
 		arr[tail] = null;
 		size--;
-		if ((double) size / (double) arr.length < 0.25)
+		if (((double) size / (double) arr.length < 0.25) && arr.length > 8)
 		{
 			resize(arr.length / 2);
 		}

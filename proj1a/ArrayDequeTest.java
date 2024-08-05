@@ -34,6 +34,16 @@ public class ArrayDequeTest
 		return true;
 	}
 
+	public static boolean checkEquals(int expected, int actual)
+	{
+		if (expected != actual)
+		{
+			System.out.println("returned " + actual + ", but expected: " + expected);
+			return false;
+		}
+		return true;
+	}
+
 	/* Prints a nice message based on whether a test passed.
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed)
@@ -112,7 +122,7 @@ public class ArrayDequeTest
 		lld1.addFirst("front");
 		lld1.addLast("middle");
 		lld1.addLast("back");
-		
+
 		passed = checkEquals("back", lld1.get(2)) && passed;
 		passed = checkEquals("front", lld1.get(0)) && passed;
 		passed = checkEquals("middle", lld1.get(1)) && passed;
@@ -121,11 +131,44 @@ public class ArrayDequeTest
 
 	}
 
+	/** Checks that the resizing is correct. */
+	public static void resizeTest()
+	{
+		System.out.println("Running resize test.");
+		ArrayDeque<Integer> lst = new ArrayDeque<>();
+
+		boolean passed = checkEmpty(true, lst.isEmpty());
+
+		for (int i = 0; i < 10000; i++)
+		{
+			lst.addLast(i);
+		}
+		passed = checkEquals(12, lst.get(12)) && passed;
+		passed = checkEquals(41, lst.get(41)) && passed;
+		passed = checkEquals(10, lst.get(10)) && passed;
+		passed = checkEquals(1004, lst.get(1004)) && passed;
+		passed = checkEquals(4110, lst.get(4110)) && passed;
+
+		for (int i = 0; i < 9999; i++)
+		{
+			lst.removeFirst();
+		}
+
+		passed = checkEquals(9999, lst.get(0)) && passed;
+		passed = checkEquals(1, lst.size()) && passed;
+
+		lst.removeLast();
+		passed = checkEmpty(true, lst.isEmpty()) && passed;
+
+		printTestStatus(passed);
+	}
+
 	public static void main(String[] args)
 	{
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
 		getGetRecursiveTest();
+		resizeTest();
 	}
 } 
