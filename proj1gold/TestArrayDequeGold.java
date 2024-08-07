@@ -14,18 +14,18 @@ public class TestArrayDequeGold
 
 		boolean passed = true;
 
-		for (int i = 0; i < 10000; i++)
+		for (int i = 0; true; i++)
 		{
 			double p = StdRandom.uniform();
 			if (p <= 0.25)
 			{
-				msg = msg.concat("addFirst(%d)\n".formatted(i));
+				msg = msg.concat("addFirst(" + i + ")\n");
 				student.addFirst(i);
 				expected.addFirst(i);
 			}
 			else if (p <= 0.5)
 			{
-				msg = msg.concat("addLast(%d)\n".formatted(i));
+				msg = msg.concat("addLast(" + i + ")\n");
 				student.addLast(i);
 				expected.addLast(i);
 			}
@@ -40,7 +40,7 @@ public class TestArrayDequeGold
 				}
 				else
 				{
-					msg = msg.concat("addFirst(%d)\n".formatted(i));
+					msg = msg.concat("addFirst(" + i + ")\n");
 					student.addFirst(i);
 					expected.addFirst(i);
 				}
@@ -56,7 +56,7 @@ public class TestArrayDequeGold
 				}
 				else
 				{
-					msg = msg.concat("addLast(%d)\n".formatted(i));
+					msg = msg.concat("addLast(" + i + ")\n");
 					student.addLast(i);
 					expected.addLast(i);
 				}
