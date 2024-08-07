@@ -19,4 +19,13 @@ public class TestPalindrome
 		}
 		assertEquals("persiflage", actual);
 	}
+
+	@Test
+	public void testIsPalindrome()
+	{
+		assertTrue(palindrome.isPalindrome("abba"));
+		assertTrue(palindrome.isPalindrome("a"));
+		assertTrue(palindrome.isPalindrome(""));
+		assertFalse(palindrome.isPalindrome("horse"));
+	}
 }
