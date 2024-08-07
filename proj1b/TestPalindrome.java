@@ -27,5 +27,11 @@ public class TestPalindrome
 		assertTrue(palindrome.isPalindrome("a"));
 		assertTrue(palindrome.isPalindrome(""));
 		assertFalse(palindrome.isPalindrome("horse"));
+
+		OffByOne offByOne = new OffByOne();
+		assertTrue(palindrome.isPalindrome("abab", offByOne));
+		assertTrue(palindrome.isPalindrome("c", offByOne));
+		assertTrue(palindrome.isPalindrome("", offByOne));
+		assertFalse(palindrome.isPalindrome("abba", offByOne));
 	}
 }
