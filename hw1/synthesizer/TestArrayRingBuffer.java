@@ -35,4 +35,21 @@ public class TestArrayRingBuffer
 		assertFalse(arb.isFull());
 		assertFalse(arb.isEmpty());
 	}
+
+	@Test
+	public void forTest()
+	{
+		ArrayRingBuffer<Integer> arb = new ArrayRingBuffer<>(4);
+
+		for (int i = 0; i < 4; i++)
+		{
+			arb.enqueue(i);
+		}
+
+		int answer = 0;
+		for (Integer n : arb)
+		{
+			assertEquals(answer++, n.intValue());
+		}
+	}
 }
