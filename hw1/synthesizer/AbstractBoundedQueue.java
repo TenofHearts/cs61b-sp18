@@ -1,4 +1,4 @@
-package hw1.synthesizer;
+package synthesizer;
 
 import java.lang.annotation.Retention;
 

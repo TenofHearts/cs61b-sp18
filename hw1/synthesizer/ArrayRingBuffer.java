@@ -1,5 +1,5 @@
 // TODO: Make sure to make this class a part of the synthesizer package
-package hw1.synthesizer;
+package synthesizer;
 
 import hw1.synthesizer.AbstractBoundedQueue;
 
@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>
 {
 	/* Index for the next dequeue or peek. */
-	private int first;            // index for the next dequeue or peek
+	private int first; // index for the next dequeue or peek
 	/* Index for the next enqueue. */
 	private int last;
 	/* Array for storing the buffer data. */
@@ -22,10 +22,10 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>
 	public ArrayRingBuffer(int capacity)
 	{
 		// TODO: Create new array with capacity elements.
-		//       first, last, and fillCount should all be set to 0.
-		//       this.capacity should be set appropriately. Note that the local variable
-		//       here shadows the field we inherit from AbstractBoundedQueue, so
-		//       you'll need to use this.capacity to set the capacity.
+		// first, last, and fillCount should all be set to 0.
+		// this.capacity should be set appropriately. Note that the local variable
+		// here shadows the field we inherit from AbstractBoundedQueue, so
+		// you'll need to use this.capacity to set the capacity.
 		first = 0;
 		last = 0;
 		rb = (T[]) new Object[capacity];

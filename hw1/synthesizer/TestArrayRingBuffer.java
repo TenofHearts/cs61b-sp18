@@ -1,4 +1,4 @@
-package hw1.synthesizer;
+package synthesizer;
 
 import org.junit.Test;
 

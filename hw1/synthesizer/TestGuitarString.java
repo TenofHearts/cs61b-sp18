@@ -1,4 +1,4 @@
-package hw1.synthesizer;
+package synthesizer;
 
 /* Since this test is part of a package, we have to import the package version of StdAudio. */
 /* Don't worry too much about this, we'll get there in due time. */
@@ -23,7 +23,6 @@ public class TestGuitarString
 	{
 		jh61b.junit.textui.runClasses(TestGuitarString.class);
 	}
-
 
 	@Test
 	public void testTic()
@@ -54,7 +53,6 @@ public class TestGuitarString
 		assertEquals(expected, s5, 0.001);
 
 	}
-
 
 	@Test
 	public void testPluckTheAString()
