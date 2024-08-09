@@ -1,7 +1,7 @@
 // TODO: Make sure to make this class a part of the synthesizer package
 package synthesizer;
 
-import hw1.synthesizer.ArrayRingBuffer;
+import synthesizer.ArrayRingBuffer;
 
 //Make sure this class is public
 public class GuitarString
@@ -26,6 +26,10 @@ public class GuitarString
 		// Your buffer should be initially filled with zeros.
 		int capacity = (int) Math.round(SR / frequency);
 		buffer = new ArrayRingBuffer<>(capacity);
+		while (!buffer.isFull())
+		{
+			buffer.enqueue(0.0);
+		}
 	}
 
 	/* Pluck the guitar string by replacing the buffer with white noise. */

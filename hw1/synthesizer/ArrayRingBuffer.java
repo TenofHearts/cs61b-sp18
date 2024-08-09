@@ -1,7 +1,7 @@
 // TODO: Make sure to make this class a part of the synthesizer package
 package synthesizer;
 
-import hw1.synthesizer.AbstractBoundedQueue;
+import synthesizer.AbstractBoundedQueue;
 
 import java.util.Iterator;
 

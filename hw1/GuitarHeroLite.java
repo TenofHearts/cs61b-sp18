@@ -12,8 +12,8 @@ public class GuitarHeroLite
 	public static void main(String[] args)
 	{
 		/* create two guitar strings, for concert A and C */
-		hw1.synthesizer.GuitarString stringA = new hw1.synthesizer.GuitarString(CONCERT_A);
-		hw1.synthesizer.GuitarString stringC = new hw1.synthesizer.GuitarString(CONCERT_C);
+		synthesizer.GuitarString stringA = new synthesizer.GuitarString(CONCERT_A);
+		synthesizer.GuitarString stringC = new synthesizer.GuitarString(CONCERT_C);
 
 		while (true)
 		{
