@@ -46,6 +46,8 @@ public class TestArrayRingBuffer
 			arb.enqueue(i);
 		}
 
+		// System.out.println("Hello World!");
+
 		int answer = 0;
 		for (Integer n : arb)
 		{
