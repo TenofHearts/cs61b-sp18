@@ -1,25 +1,38 @@
 package hw1.synthesizer;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
  * Tests the ArrayRingBuffer class.
- * 
+ *
  * @author Josh Hug
  */
 
 public class TestArrayRingBuffer
 {
-    @Test
-    public void someTest()
-    {
-        // ArrayRingBuffer arb = new ArrayRingBuffer(10);
-    }
+	/** Calls tests for ArrayRingBuffer. */
+	public static void main(String[] args)
+	{
+		jh61b.junit.textui.runClasses(TestArrayRingBuffer.class);
+	}
 
-    /** Calls tests for ArrayRingBuffer. */
-    public static void main(String[] args)
-    {
-        jh61b.junit.textui.runClasses(TestArrayRingBuffer.class);
-    }
+	@Test
+	public void someTest()
+	{
+		ArrayRingBuffer<Integer> arb = new ArrayRingBuffer<>(4);
+
+		assertTrue(arb.isEmpty());
+		arb.enqueue(1);
+		arb.enqueue(2);
+		assertEquals(1, arb.dequeue().intValue());
+		arb.enqueue(3);
+		arb.enqueue(4);
+		arb.enqueue(5);
+		assertTrue(arb.isFull());
+		assertEquals(2, arb.dequeue().intValue());
+		assertFalse(arb.isFull());
+		assertFalse(arb.isEmpty());
+	}
 }
