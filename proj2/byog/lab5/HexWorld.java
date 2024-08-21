@@ -8,6 +8,7 @@ import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -15,8 +16,8 @@ import java.util.Random;
  */
 public class HexWorld
 {
-	private static final int HEIGHT = 60;
-	private static final int WIDTH = 60;
+	private static final int HEIGHT = 40;
+	private static final int WIDTH = 40;
 
 	public static void main(String[] args)
 	{
@@ -32,20 +33,76 @@ public class HexWorld
 			}
 		}
 
-		addHexagon(10, 10, 10, Tileset.FLOWER, world);
+		//		addHexagon(10, new Position(9, 0), Tileset.FLOWER, world);
+
+		Position anchor = new Position(15, 0);
+
+		addVerticalHexes(5, anchor, 3, world);
+		addVerticalHexes(4, upperLeftHexPos(anchor, 3), 3, world);
+		addVerticalHexes(4, upperRightHexPos(anchor, 3), 3, world);
+		addVerticalHexes(3, upperLeftHexPos(upperLeftHexPos(anchor, 3), 3), 3, world);
+		addVerticalHexes(3, upperRightHexPos(upperRightHexPos(anchor, 3), 3), 3, world);
 
 		renderer.renderFrame(world);
 	}
 
-	public static void addHexagon(int size, int leftUpperCornerX, int leftUpperCornerY, TETile tile, TETile[][] world)
+	private static void addHexagon(int size, Position leftLowerCorner, TETile tile, TETile[][] world)
 	{
 		for (int i = 0; i < size; i++)
 		{
-			for (int j = leftUpperCornerX - i; j < leftUpperCornerX + size + i; j++)
+			for (int j = leftLowerCorner.X - i; j < leftLowerCorner.X + size + i; j++)
 			{
-				world[j][leftUpperCornerY + i] = tile;
-				world[j][leftUpperCornerY + 2 * size - 1 - i] = tile;
+				world[j][leftLowerCorner.Y + i] = tile;
+				world[j][leftLowerCorner.Y + 2 * size - 1 - i] = tile;
 			}
+		}
+	}
+
+	private static Position upperHexPos(Position me, int size)
+	{
+		return new Position(me.X, me.Y + size * 2);
+	}
+
+	private static Position upperLeftHexPos(Position me, int size)
+	{
+		return new Position(me.X - size * 2 + 1, me.Y + size);
+	}
+
+	private static Position upperRightHexPos(Position me, int size)
+	{
+		return new Position(me.X + size * 2 - 1, me.Y + size);
+	}
+
+	private static TETile randomTile()
+	{
+		int key = new Random().nextInt();
+		return switch (key % 5)
+		{
+			case 0 -> Tileset.FLOWER;
+			case 1 -> Tileset.FLOOR;
+			case 2 -> Tileset.MOUNTAIN;
+			case 3 -> Tileset.SAND;
+			default -> Tileset.WATER;
+		};
+	}
+
+	private static void addVerticalHexes(int num, Position leftLowerMost, int size, TETile[][] world)
+	{
+		for (int i = 0; i < num; i++)
+		{
+			addHexagon(size, leftLowerMost, randomTile(), world);
+			leftLowerMost = upperHexPos(leftLowerMost, size);
+		}
+	}
+
+	private static class Position
+	{
+		public int X, Y;
+
+		public Position(int x, int y)
+		{
+			X = x;
+			Y = y;
 		}
 	}
 }
