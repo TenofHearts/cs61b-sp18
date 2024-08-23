@@ -17,7 +17,7 @@ public class MemoryGame
 	private boolean gameOver;
 	private boolean playerTurn;
 
-	public MemoryGame(int width, int height, int seed)
+	public MemoryGame(int width, int height)
 	{
 		/* Sets up StdDraw so that it has a width by height grid of 16 by 16 squares as its canvas
 		 * Also sets up the scale so the top left is (0,0) and the bottom right is (width, height)
@@ -33,19 +33,12 @@ public class MemoryGame
 		StdDraw.enableDoubleBuffering();
 
 		//TODO: Initialize random number generator
-		rand = new Random(seed);
+		rand = new Random();
 	}
 
 	public static void main(String[] args)
 	{
-		if (args.length < 1)
-		{
-			System.out.println("Please enter a seed");
-			return;
-		}
-
-		int seed = Integer.parseInt(args[0]);
-		MemoryGame game = new MemoryGame(40, 40, seed);
+		MemoryGame game = new MemoryGame(60, 30);
 		game.startGame();
 	}
 
@@ -68,11 +61,29 @@ public class MemoryGame
 
 
 		StdDraw.setPenColor(100, 0, 255);
-		StdDraw.text(20.0, 20.0, s);
-
-		StdDraw.show();
+		StdDraw.text((double) width / 2, (double) height / 2, s);
 
 		//TODO: If game is not over, display relevant game information at the top of the screen
+		if (!gameOver)
+		{
+			StdDraw.line(0, height - 5, width, height - 5);
+
+			if (playerTurn)
+			{
+				StdDraw.text((double) width / 2, height - 2.5, "Type!");
+			}
+			else
+			{
+				StdDraw.text((double) width / 2, height - 2.5, "Watch!");
+			}
+
+			StdDraw.textLeft(0, height - 2.5, "Round: %d".formatted(round));
+
+			String encouragement = ENCOURAGEMENT[rand.nextInt(ENCOURAGEMENT.length)];
+			StdDraw.textRight(width, height - 2.5, encouragement);
+		}
+
+		StdDraw.show();
 	}
 
 	public void flashSequence(String letters)
@@ -83,7 +94,7 @@ public class MemoryGame
 		{
 			drawFrame(String.valueOf(ch));
 			StdDraw.pause(1000);
-			StdDraw.clear();
+			drawFrame("");
 			StdDraw.pause(500);
 		}
 	}
@@ -124,12 +135,13 @@ public class MemoryGame
 			String target = generateRandomString(round);
 			flashSequence(target);
 			playerTurn = true;
+			drawFrame("");
 			String get = solicitNCharsInput(round);
+			StdDraw.pause(200);
 
 			gameOver = !target.equals(get);
 		}
 		drawFrame("Game Over! You made it to round: %d".formatted(round));
-		StdDraw.pause(3000);
 	}
 
 }
