@@ -8,9 +8,10 @@ import java.awt.image.renderable.RenderableImage;
 public class Percolation
 {
 	private final int LEN;
+	private final WeightedQuickUnionUF ds;
+	private final boolean[][] graph;
 	private int num;
-	private WeightedQuickUnionUF ds;
-	private boolean[][] graph;
+	private boolean percolate;
 
 	public Percolation(int n)
 	{
@@ -22,6 +23,10 @@ public class Percolation
 		num = 0;
 
 		ds = new WeightedQuickUnionUF(n * n);
+		for (int i = 0; i < n; i++)
+		{
+			ds.union(-1, i);
+		}
 
 		graph = new boolean[n][n];
 		for (int i = 0; i < n; i++)
@@ -31,6 +36,8 @@ public class Percolation
 				graph[i][j] = false;
 			}
 		}
+
+		percolate = false;
 	}
 
 	private void connectUp(int i)
@@ -85,9 +92,14 @@ public class Percolation
 		}
 	}
 
+	private int To1D(int row, int col)
+	{
+		return row * LEN + col;
+	}
+
 	private void connectAll(int row, int col)
 	{
-		int index = row * LEN + col;
+		int index = To1D(row, col);
 
 		connectDown(index);
 		connectLeft(index);
@@ -111,6 +123,10 @@ public class Percolation
 			graph[row][col] = true;
 			connectAll(row, col);
 			num++;
+			if (row == LEN - 1)
+			{
+				percolate = isOpen(row, col);
+			}
 		}
 	}
 
@@ -125,7 +141,7 @@ public class Percolation
 
 	public boolean isFull(int row, int col)
 	{
-		return !isOpen(row, col);
+		return ds.connected(-1, To1D(row, col));
 	}
 
 	public int numberOfOpenSites()
@@ -135,6 +151,6 @@ public class Percolation
 
 	public boolean percolates()
 	{
-		return false;
+		return percolate;
 	}
 }
