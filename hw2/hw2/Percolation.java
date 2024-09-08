@@ -8,12 +8,18 @@ import java.awt.image.renderable.RenderableImage;
 public class Percolation
 {
 	private final int LEN;
+	private int num;
 	private WeightedQuickUnionUF ds;
 	private boolean[][] graph;
 
 	public Percolation(int n)
 	{
+		if (n <= 0)
+		{
+			throw new IllegalArgumentException("N must be positive.");
+		}
 		LEN = n;
+		num = 0;
 
 		ds = new WeightedQuickUnionUF(n * n);
 
@@ -29,49 +35,53 @@ public class Percolation
 
 	private void connectUp(int i)
 	{
+		int target = i - LEN;
 		if (i < LEN)
 		{
 			return;
 		}
-		else
+		else if (graph[target / LEN][target % LEN])
 		{
-			ds.union(i, i - LEN);
+			ds.union(i, target);
 		}
 	}
 
 	private void connectDown(int i)
 	{
+		int target = i + LEN;
 		if (i >= LEN * (LEN - 1))
 		{
 			return;
 		}
-		else
+		else if (graph[target / LEN][target % LEN])
 		{
-			ds.union(i, i + LEN);
+			ds.union(i, target);
 		}
 	}
 
 	private void connectLeft(int i)
 	{
+		int target = i - 1;
 		if (i % LEN == 0)
 		{
 			return;
 		}
-		else
+		else if (graph[target / LEN][target % LEN])
 		{
-			ds.union(i, i - 1);
+			ds.union(i, target);
 		}
 	}
 
 	private void connectRight(int i)
 	{
+		int target = i + 1;
 		if ((i + 1) % LEN == 0)
 		{
 			return;
 		}
-		else
+		else if (graph[target / LEN][target % LEN])
 		{
-			ds.union(i, i + 1);
+			ds.union(i, target);
 		}
 	}
 
@@ -85,14 +95,31 @@ public class Percolation
 		connectRight(index);
 	}
 
+	private boolean checksBounds(int row, int col)
+	{
+		return !(row >= 0 && row < LEN && col >= 0 && col < LEN);
+	}
+
 	public void open(int row, int col)
 	{
-		graph[row][col] = true;
-		connectAll(row, col);
+		if (checksBounds(row, col))
+		{
+			throw new IndexOutOfBoundsException("Index out of bounds.");
+		}
+		else if (!graph[row][col])
+		{
+			graph[row][col] = true;
+			connectAll(row, col);
+			num++;
+		}
 	}
 
 	public boolean isOpen(int row, int col)
 	{
+		if (checksBounds(row, col))
+		{
+			throw new IndexOutOfBoundsException("Index out of bounds.");
+		}
 		return graph[row][col];
 	}
 
@@ -103,7 +130,7 @@ public class Percolation
 
 	public int numberOfOpenSites()
 	{
-		return 0;
+		return num;
 	}
 
 	public boolean percolates()
