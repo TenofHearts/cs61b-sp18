@@ -9,9 +9,9 @@ public class Percolation
 {
 	private final int LEN;
 	private final WeightedQuickUnionUF ds;
+	private final WeightedQuickUnionUF helper;
 	private final boolean[][] graph;
 	private int num;
-	private boolean percolate;
 
 	public Percolation(int n)
 	{
@@ -22,10 +22,13 @@ public class Percolation
 		LEN = n;
 		num = 0;
 
-		ds = new WeightedQuickUnionUF(n * n);
+		ds = new WeightedQuickUnionUF(n * n + 2);
+		helper = new WeightedQuickUnionUF(n * n + 1);
 		for (int i = 0; i < n; i++)
 		{
-			ds.union(-1, i);
+			ds.union(LEN * LEN, i);
+			helper.union(LEN * LEN, i);
+			ds.union(LEN * LEN + 1, To1D(LEN - 1, i));
 		}
 
 		graph = new boolean[n][n];
@@ -36,8 +39,6 @@ public class Percolation
 				graph[i][j] = false;
 			}
 		}
-
-		percolate = false;
 	}
 
 	private void connectUp(int i)
@@ -50,6 +51,7 @@ public class Percolation
 		else if (graph[target / LEN][target % LEN])
 		{
 			ds.union(i, target);
+			helper.union(i, target);
 		}
 	}
 
@@ -63,6 +65,7 @@ public class Percolation
 		else if (graph[target / LEN][target % LEN])
 		{
 			ds.union(i, target);
+			helper.union(i, target);
 		}
 	}
 
@@ -76,6 +79,7 @@ public class Percolation
 		else if (graph[target / LEN][target % LEN])
 		{
 			ds.union(i, target);
+			helper.union(i, target);
 		}
 	}
 
@@ -89,6 +93,7 @@ public class Percolation
 		else if (graph[target / LEN][target % LEN])
 		{
 			ds.union(i, target);
+			helper.union(i, target);
 		}
 	}
 
@@ -123,10 +128,6 @@ public class Percolation
 			graph[row][col] = true;
 			connectAll(row, col);
 			num++;
-			if (row == LEN - 1)
-			{
-				percolate = isOpen(row, col);
-			}
 		}
 	}
 
@@ -141,7 +142,7 @@ public class Percolation
 
 	public boolean isFull(int row, int col)
 	{
-		return ds.connected(-1, To1D(row, col));
+		return helper.connected(LEN * LEN, To1D(row, col)) && graph[row][col];
 	}
 
 	public int numberOfOpenSites()
@@ -151,6 +152,6 @@ public class Percolation
 
 	public boolean percolates()
 	{
-		return percolate;
+		return ds.connected(LEN * LEN, LEN * LEN + 1);
 	}
 }
