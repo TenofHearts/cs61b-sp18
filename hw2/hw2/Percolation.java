@@ -38,6 +38,11 @@ public class Percolation
 		}
 	}
 
+	public static void main(String[] args)
+	{
+		return;
+	}
+
 	private void connectUp(int i)
 	{
 		int target = i - LEN;
