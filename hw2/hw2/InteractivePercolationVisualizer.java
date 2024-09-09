@@ -26,6 +26,10 @@ public class InteractivePercolationVisualizer
 
 		// turn on animation mode
 		StdDraw.show(0);
+		if (args.length == 1)
+		{
+			N = Integer.parseInt(args[0]);
+		}
 
 		// repeatedly open site specified my mouse click and draw resulting system
 		StdOut.println(N);

@@ -38,8 +38,8 @@ public class PercolationStats
 			t[i] = times;
 		}
 
-		m = StdStats.mean(t);
-		s = StdStats.stddev(t);
+		m = StdStats.mean(t) / SIZE;
+		s = StdStats.stddev(t) / SIZE;
 	}
 
 	public double mean()
