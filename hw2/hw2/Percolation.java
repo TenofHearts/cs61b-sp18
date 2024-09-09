@@ -1,9 +1,6 @@
 package hw2;
 
-import com.sun.source.doctree.EscapeTree;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
-import java.awt.image.renderable.RenderableImage;
 
 public class Percolation
 {
