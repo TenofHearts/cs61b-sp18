@@ -154,6 +154,6 @@ public class Percolation
 
 	public boolean percolates()
 	{
-		return ds.connected(LEN * LEN, LEN * LEN + 1);
+		return ds.connected(LEN * LEN, LEN * LEN + 1) && num >= LEN;
 	}
 }
